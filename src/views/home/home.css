@@ -1,0 +1,14 @@
+.background-container {
+    background-image: url('../../assets/background.png');
+    /* background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;*/
+    /* background-color: rgba(136,81,204,0.68); */
+    /* height: 100%; */
+    /* width: 100vw; */
+    min-height: 100vh;
+    /* background-image: linear-gradient(0, #5d52c7, #92428f); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5% 10%;
+}

@@ -1,0 +1,24 @@
+.favourite-part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 64vh;
+    gap: 1.5rem;
+}
+
+/* .nothing-center-part {
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+ 
+
+.nothing-added{
+    color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 21px;
+  text-align: center;
+}
