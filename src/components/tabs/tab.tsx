@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './tab.css';
 // import { useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
@@ -52,7 +52,7 @@ const Tab = () => {
         <div className='tab-container'>
             <div className='tabs-div'>
                 <div className="tabs">
-                    <div> <NavLink to='/'>HOME</NavLink></div>
+                    <div><NavLink to='/'>HOME</NavLink></div>
                     <div><NavLink to='/fav'>FAVOURITE</NavLink></div>
                     <div><NavLink to='/recentSearch'>RECENT SEARCH</NavLink></div>
                 </div>

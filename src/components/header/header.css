@@ -50,3 +50,9 @@
     letter-spacing: 0;
     line-height: 19px;
 }
+
+
+
+.header-mobile {
+    display: none;
+}

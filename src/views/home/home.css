@@ -12,3 +12,73 @@
     background-size: cover;
     padding: 5% 10%;
 }
+
+@media screen and (max-width: 780px) {
+    .background-container {
+        padding: unset;
+    }
+
+    .header {
+        display: none !important;
+    }
+
+    .header-mobile {
+        display: flex !important;
+    }
+
+    .header-mobile {
+        display: flex;
+        align-items: center;
+        /* flex-direction: row; */
+        justify-content: space-between;
+        /* padding-bottom: 4rem; */
+        padding: 0rem 2rem;
+        padding-top: 2rem;
+    }
+
+    .mid-part {
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 4rem;
+        gap: 1rem;
+        display: inline-block !important;
+        align-content: center;
+        justify-items: center;
+    }
+
+    .city-name {
+        /* color: #FFFFFF; */
+        /* font-family: Roboto; */
+        /* font-size: 20px; */
+        /* font-weight: 500; */
+        /* letter-spacing: 0; */
+        /* line-height: 24px; */
+        /* text-align: center; */
+        gap: 2rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .burger-logo {
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .tabs-div {
+        display: none !important;
+    }
+
+    .footer-div {
+        display: flex !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 2rem 3rem !important;
+        align-items: center !important;
+        justify-content: space-around;
+        flex-direction: row;
+        opacity: 0.1;
+        background-color: #FFFFFF;
+        overflow-y: hidden;
+    }
+}

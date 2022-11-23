@@ -45,7 +45,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-info">
                     <div className="item-name">Wind</div>
-                    <div className="item-info">4mph</div>
+                    <div className="item-info">4 mph</div>
                 </div>
             </div>
 
@@ -55,13 +55,9 @@ const Footer = () => {
                 </div>
                 <div className="footer-info">
                     <div className="item-name">Visibility</div>
-                    <div className="item-info">12mph</div>
+                    <div className="item-info">12 mph</div>
                 </div>
             </div>
-            {/* <div className="precipitation"><img src={precipitation} alt="" /> <span>Precipitation 0%</span></div>
-            <div className="humidity"><img src={humidity} alt="" /> <span>Humidity 47%</span></div>
-            <div className="wind"><img src={wind} alt="" /> <span>Wind 4mph</span></div>
-            <div className="visibility"><img src={visibility} alt="" /> <span>Visibility 12mph</span></div> */}
         </div>
     )
 }
