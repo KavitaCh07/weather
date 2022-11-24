@@ -74,7 +74,6 @@ const Tab = () => {
                 <div className="mostly-sunny">Mostly Sunny</div>
             </div> */}
 
-
             <Routes>
                 <Route path="/" element={<HomePart />} />
                 <Route path="/fav" element={<Favourites />} />

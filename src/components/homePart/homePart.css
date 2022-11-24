@@ -1,0 +1,20 @@
+.mobile-date-div {
+    display: none;
+}
+
+@media screen and (max-width:780px) {
+    .mobile-date-div {
+        display: flex !important;
+    }
+
+    .mob-date {
+        opacity: 0.6;
+        color: #FFFFFF;
+        font-family: Roboto;
+        font-size: 13px;
+        letter-spacing: 1.5px;
+        line-height: 15px;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+}

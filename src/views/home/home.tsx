@@ -7,11 +7,11 @@ import Tab from '../../components/tabs/tab';
 const Home = () => {
   return (
     <div>
-        <div className="background-container">
-           <Header/>
-           <Tab/>
-        </div>
-      
+      <div className="background-container">
+        <Header />
+        <Tab />
+      </div>
+
     </div>
   )
 }
