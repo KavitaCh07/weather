@@ -1,22 +1,79 @@
 import React from 'react'
 import './header.css';
 import logo from '../../assets/logo.png';
-import search from '../../assets/icon_search_white.png';
+import searchImg from '../../assets/icon_search_white.png';
 import burgerMenu from '../../assets/icon_menu_white.png';
 import mobSearch from '../../assets/icon_search_white.png';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import back from '../../assets/back.png';
 import HomePart from '../homePart/homePart';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addPlace, addCountry, addWeatherData } from '../../redux/weatherSlice';
 
 const Header = () => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid=b9a7b22ff1d3c701a8eb51c9e36548af`;
+
+  const [place, setPlace] = useState([]);
+  const [searchInputData, setSearchInputData] = useState([]);
+  const [country, setCountry] = useState([]);
+  const [weather, setWeather] = useState([]);
+  const dispatch = useDispatch();
+
+  const options = {
+    method: 'GET',
+  }
+
+  useEffect(() => {
+    dispatch(addPlace(place));
+  }, [place]);
+
+  useEffect(() => {
+    dispatch(addCountry(country));
+  }, [country]);
+
+  useEffect(() => {
+    dispatch(addWeatherData(weather));
+  }, [weather]);
+
+  useEffect(() => {
+    getPlaces(searchInputData)
+      .then((data: any) => {
+        console.log(data);
+        setPlace(data && data.location && data.location.city && data.location.city);
+        setCountry(data && data.location && data.location.country && data.location.country);
+        setWeather(data && data);
+        console.log(weather);
+      })
+  }, [searchInputData]);
+
+  const getPlaces = async(searchInputData: any) => {
+    try {
+      const response = await axios.get(url, options);
+      return response?.data;
+    } catch (error) {
+      console.log(error);
+    }   
+  };
+
+  
+
+  const url = 'https://api.openweathermap.org/data/2.5/weather?q=${searchInputData}&appid=b9a7b22ff1d3c701a8eb51c9e36548af';
 
   const [sidebar, setSidebar] = useState(false);
 
   const [searchPage, setSearchPage] = useState(false);
 
+  
+
   const navigate = useNavigate();
+
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+    setSearchInputData(event.target.searchInputData.value);
+    console.log(searchInputData);
+  }
 
   return (
     <div>
@@ -24,9 +81,9 @@ const Header = () => {
         {/* <div className="header-div"> */}
         <div className="logo-img"><img src={logo} alt="" /></div>
         <div className="search-bar">
-          <form action="">
-            <input type="text" name="" className='search-input' placeholder='Search city' id="" />
-            <div className="search-icon"><img src={search} alt="" /></div>
+          <form action="" onSubmit={onSubmit}>
+            <input type="text" className='search-input' name='searchInputData' placeholder='Search city' id="" />
+            <div className="search-icon"><img src={searchImg} alt="" /></div>
           </form>
           {/* </div> */}
         </div>
