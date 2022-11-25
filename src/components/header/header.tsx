@@ -4,76 +4,56 @@ import logo from '../../assets/logo.png';
 import searchImg from '../../assets/icon_search_white.png';
 import burgerMenu from '../../assets/icon_menu_white.png';
 import mobSearch from '../../assets/icon_search_white.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import back from '../../assets/back.png';
-import HomePart from '../homePart/homePart';
+// import HomePart from '../homePart/homePart';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addPlace, addCountry, addWeatherData } from '../../redux/weatherSlice';
+import { AddPlace } from '../../redux/weatherSlice';
+
 
 const Header = () => {
-
-  const [place, setPlace] = useState([]);
-  const [searchInputData, setSearchInputData] = useState([]);
-  const [country, setCountry] = useState([]);
-  const [weather, setWeather] = useState([]);
+  const [sidebar, setSidebar] = useState(false); //for opening side hamburger bar page
+  const [searchPage, setSearchPage] = useState(false); // for opening searchbar page
+  const [searchInputData, setSearchInputData] = useState('');  //to take input data from search bar
+  const [fetchedData, setFetchedData] = useState('');
   const dispatch = useDispatch();
+
+
+  const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${searchInputData}||Udupi&format=json&u=f`;
 
   const options = {
     method: 'GET',
-  }
-
-  useEffect(() => {
-    dispatch(addPlace(place));
-  }, [place]);
-
-  useEffect(() => {
-    dispatch(addCountry(country));
-  }, [country]);
-
-  useEffect(() => {
-    dispatch(addWeatherData(weather));
-  }, [weather]);
-
-  useEffect(() => {
-    getPlaces(searchInputData)
-      .then((data: any) => {
-        console.log(data);
-        setPlace(data && data.location && data.location.city && data.location.city);
-        setCountry(data && data.location && data.location.country && data.location.country);
-        setWeather(data && data);
-        console.log(weather);
-      })
-  }, [searchInputData]);
-
-  const getPlaces = async(searchInputData: any) => {
-    try {
-      const response = await axios.get(url, options);
-      return response?.data;
-    } catch (error) {
-      console.log(error);
-    }   
+    headers: {
+      'X-RapidAPI-Key': 'c9a70d85a1msh9fdedff4ba07dd2p137352jsnf5a31b7bf63f',
+      'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+    }
   };
 
-  
+  useEffect(() => {
+    fetch(url, options)
+      .then(res => res.json())
+      .then(json => setFetchedData(json))
+      .catch(err => console.error('error:' + err));
+  }, [searchInputData])
 
-  const url = 'https://api.openweathermap.org/data/2.5/weather?q=${searchInputData}&appid=b9a7b22ff1d3c701a8eb51c9e36548af';
+  useEffect(() => {
+    dispatch(AddPlace(fetchedData));
+  }, [fetchedData]);
 
-  const [sidebar, setSidebar] = useState(false);
 
-  const [searchPage, setSearchPage] = useState(false);
 
-  
 
-  const navigate = useNavigate();
+
+  // const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInputData}&appid=b9a7b22ff1d3c701a8eb51c9e36548af`;
+
 
   const onSubmit = (event: any) => {
     event.preventDefault();
+    // console.log(searchInputData);
     setSearchInputData(event.target.searchInputData.value);
-    console.log(searchInputData);
-  }
+  };
 
   return (
     <div>

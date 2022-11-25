@@ -1,38 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+import { log } from "console";
+//createAsyncThunk helps in creating async functions (it take 2 parameters 1.actionType and 2. action which makes call to external api)
+//create action function now
+//payload is data which we are sending to api
+
+export interface CounterState {
+    place: string;
+}
 
 const initialState = {
     place: [],
-    country: [],
-    weatherData: [],
 }
 
-export const placeSlice = createSlice({
-
+const weatherSlice = createSlice({
     name: 'weather',
     initialState,
     reducers: {
-
-        addPlace: (state: any, action: any) => {
+        AddPlace: (state: any, action: any) => {
             state.place = action.payload;
-            // console.log(state.place);
+            console.log("2", state.place)
         },
-
-        addCountry: (state: any, action: any) => {
-            state.country = action.payload;
-            // console.log(state.place);
-        },
-
-        addWeatherData: (state: any, action: any) => {
-            state.weatherData = action.payload;
-            console.log(state.weatherData);
-        },
-
-
     },
+    // extraReducers: {
+    //     [getWeatherData.fulfilled]: (state : any, action: any) =>{
+    //         return action.payload.weather;
+    //     }
+    // }
+});
 
-})
-
-
-export const { addPlace, addCountry, addWeatherData } = placeSlice.actions;
-
-export default placeSlice;
+export const { AddPlace } = weatherSlice.actions;
+export default weatherSlice.reducer;

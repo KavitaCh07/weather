@@ -4,9 +4,9 @@
 
 .temperature-div {
     display: flex;
-    align-items: center;
+    align-items: self-end;
     /* justify-content: center; */
-    gap: 1rem;
+    gap:0.8rem;
 }
 
 .fav-img {
@@ -16,7 +16,7 @@
 }
 
 .switch-temperature{
-    margin-bottom: 11px;
+    margin-bottom: 15px;
 }
 
 .react-switch-bg {

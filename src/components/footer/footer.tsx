@@ -5,8 +5,18 @@ import precipitation from '../../assets/icon_precipitation_info.png';
 import humidity from '../../assets/icon_humidity_info.png';
 import wind from '../../assets/icon_wind_info.png';
 import visibility from '../../assets/icon_visibility_info.png';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 
 const Footer = () => {
+
+    const state = useSelector((state: any) => state.weather.place)
+
+    useEffect(() => {
+        console.log(state);
+    }, [state])
+
     return (
         <div className='footer-div'>
             <div className="footer-item">
@@ -25,7 +35,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-info">
                     <div className="item-name">Precipitation</div>
-                    <div className="item-info">0%</div>
+                    <div className="item-info">{state && state.current_observation && state.current_observation.atmosphere.pressure}%</div>
                 </div>
             </div>
 
@@ -35,7 +45,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-info">
                     <div className="item-name">Humidity</div>
-                    <div className="item-info">47%</div>
+                    <div className="item-info">{state && state.current_observation && state.current_observation.atmosphere.humidity}%</div>
                 </div>
             </div>
 
@@ -45,7 +55,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-info">
                     <div className="item-name">Wind</div>
-                    <div className="item-info">4 mph</div>
+                    <div className="item-info">{state && state.current_observation && state.current_observation.wind.speed} mph</div>
                 </div>
             </div>
 
@@ -55,7 +65,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-info">
                     <div className="item-name">Visibility</div>
-                    <div className="item-info">12 mph</div>
+                    <div className="item-info">{state && state.current_observation && state.current_observation.atmosphere.visibility} mph</div>
                 </div>
             </div>
         </div>
